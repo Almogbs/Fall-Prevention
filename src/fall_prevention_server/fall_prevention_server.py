@@ -26,11 +26,11 @@ class Server():
         print("Got connection: " + str(addr))
         """
         while True:
-            # data = client.recv(CHUNK)
-            # data = data.decode('utf-8')
-
+            #data = client.recv(CHUNK)
+            #data = data.decode('utf-8')
             #if len(data) <= MSG_LEN_MIN:
-            #    continue
+            #   continue
+
             #self.operator.collect(data)
             self.operator.collect("bla")
             time.sleep(5)
