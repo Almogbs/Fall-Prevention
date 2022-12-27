@@ -14,3 +14,6 @@ We use weight and pressure sensors to build our dataset and to collect data in r
 
 ### High Level Software Architecture:
 ![alt text](https://github.com/Almogbs/Fall-Prevention/blob/main/other/sw_arch.drawio.png)
+
+### System Design
+![alt text](https://github.com/Almogbs/Fall-Prevention/blob/main/other/System_Diagram.drawio.png)
