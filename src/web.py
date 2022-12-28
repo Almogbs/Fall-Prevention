@@ -1,6 +1,7 @@
 from fall_prevention_modes import CollectMode, PredMode
+from fall_prevention_patient import Patient
 from fall_prevention_server import Server
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 from turbo_flask import Turbo
 from enum import Enum, auto
 import threading
@@ -16,6 +17,7 @@ ADDR = (IP, PORT)
 
 pred = PredMode()
 server = Server(addr=ADDR, num_clients=NUM_CLIENTS, operator=pred)
+patient1 = Patient.readPatientsJson("fall_prevention_web/assets/json/patient.json")[0]
 
 class Position(Enum):
     BACK_LAYING = 0
@@ -84,9 +86,19 @@ def before_first_request():
     threading.Thread(target=update_datetime).start()
     threading.Thread(target=update_position).start()
 
-@app.route('/patient1')
-def patient1():
-    return render_template('patient1.html')
+@app.route('/edit_patient')
+def edit_patient():
+    new_vals = {k:v for k,v in request.args.items()}
+    try:
+        patient1.update(new_vals)
+    except Exception as e:
+        print(e)
+
+    return render_template('edit_patient.html', patient=patient1)
+
+@app.route('/patient')
+def patient():
+    return render_template('patient.html', patient=patient1)
 
 @app.route('/')
 def home():

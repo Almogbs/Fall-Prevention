@@ -22,7 +22,7 @@
                         </a>
                     </li>
                     <li class=" active  ">
-                        <a href="/">
+                        <a href="{{ url_for('patient') }}">
                             <p>Patient #1</p>
                         </a>
                     </li>               
@@ -98,29 +98,28 @@
                             <div class="card-header">
                                 <h5 class="card-category">Name</h5>
                                 <h3 class="card-title">
-                                     Itzick Newton
-                                </h3>                               
+                                    {{ patient.name }}
+                                </h3>
                                 <h5 class="card-category">ID</h5>
                                 <h3 class="card-title">
-                                     31415926
+                                    {{ patient.id }}
                                 </h3>
                                 <h5 class="card-category">Age</h5>
                                 <h3 class="card-title">
-                                     42
+                                    {{ patient.age }}
                                 </h3>
                                 <h5 class="card-category">Weight</h5>
                                 <h3 class="card-title">
-                                     75
+                                    {{ patient.weight }}kg
                                 </h3>
                                 <h5 class="card-category">Height</h5>
                                 <h3 class="card-title">
-                                     1.85m
+                                     {{ patient.height }}m
                                 </h3>
                                 <h5 class="card-category">Sex</h5>
-                                
                                 <h3 class="card-title">
-                                     Male
-                                    <img src="fall_prevention_web/assets/img/patients/male.png" class="image">
+                                    {{ patient.sex_dict["name"] }}
+                                        <img src="fall_prevention_web/assets/img/patients/{{ patient.sex_dict['file'] }}.png" class="image" align="right">
                                 </h3>
                             </div>
                         </div>
@@ -130,15 +129,15 @@
                             <div class="card-header">
                                 <h5 class="card-category">Floor</h5>
                                 <h3 class="card-title">
-                                     4
+                                    {{ patient.floor }}
                                 </h3>
                                 <h5 class="card-category">Room</h5>
                                 <h3 class="card-title">
-                                     12
+                                    {{ patient.room }}
                                 </h3>
                                 <h5 class="card-category">Bed</h5>
                                 <h3 class="card-title">
-                                     2
+                                    {{ patient.bed }}
                                 </h3>
                             </div>
                         </div>
@@ -148,13 +147,13 @@
                             <div class="card-header">
                                 <h5 class="card-category">Doctor</h5>
                                 <h3 class="card-title">
-                                     Dr. Art Vandelay
-                                     <img src="fall_prevention_web/assets/img/doctors/art_vandelay.png" class="image">
+                                    {{ patient.doctor_dict['name'] }}
+                                     <img src="fall_prevention_web/assets/img/doctors/{{ patient.doctor_dict['file'] }}.png" class="image">
                                 </h3>
                                 <h5 class="card-category">Nurse</h5>
                                 <h3 class="card-title">
-                                     Miss. Yafit Levi
-                                     <img src="fall_prevention_web/assets/img/nurses/yafit_levi.png" class="image">
+                                    {{ patient.nurse_dict['name'] }}
+                                     <img src="fall_prevention_web/assets/img/nurses/{{ patient.nurse_dict['file'] }}.png" class="image">
                                 </h3>
                             </div>
                         </div>
@@ -165,9 +164,7 @@
         <footer class="footer">
             <div class="container-fluid">
                 <ul class="nav">
-                    <li class="nav-item">
-                        <a target="_blank" href="/" class="nav-link"> Remove Patient </a>
-                    </li>
+                        <a href="{{ url_for('edit_patient') }}"> Edit Patient </a>
             </div>
         </footer>
 
@@ -180,12 +177,5 @@
     <script type=text/javascript src="fall_prevention_web/assets/js/plugins/bootstrap-notify.js"></script>
     <script type=text/javascript src="fall_prevention_web/assets/js/black-dashboard.min.js"></script>
     <script type=text/javascript src="fall_prevention_web/assets/js/themeSettings.js"></script>
-    <script>
-    $(document).ready(function() {
-        // Javascript method's body can be found in assets/js/demos.js
-        demo.initDashboardPageCharts();
-
-    });
-    </script>
 </body>
 </html>

@@ -22,7 +22,7 @@
                         </a>
                     </li>
                     <li class=" active  ">
-                        <a href="{{ url_for('patient1') }}">
+                        <a href="{{ url_for('patient') }}">
                             <p>Patient #1</p>
                         </a>
                     </li>               
@@ -87,22 +87,13 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-4">
+                    <div class="col-lg-3">
                         {% include "datetime.html" %}
                         {% block content2 %}{% endblock %}
                     </div>
                 </div>
             </div>
         </div>
-        <footer class="footer">
-            <div class="container-fluid">
-                <ul class="nav">
-                    <li class="nav-item">
-                        <a target="_blank" href="/" class="nav-link"> Remove Patient </a>
-                    </li>
-            </div>
-        </footer>
-
     </div>
     <script type=text/javascript src="fall_prevention_web/assets/js/core/jquery.min.js"></script>
     <script type=text/javascript src="fall_prevention_web/assets/js/core/popper.min.js"></script>
