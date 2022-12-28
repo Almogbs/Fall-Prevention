@@ -35,9 +35,12 @@ class Patient():
     @id.setter
     def id(self, id) -> None:
         if not isinstance(id, int):
-            raise TypeError("Invalid ID!")
+            try:
+                int(id)
+            except ValueError:
+                raise TypeError("Invalid ID!")
 
-        self._id = id
+        self._id = int(id)
 
     @property
     def age(self) -> int:
@@ -46,9 +49,12 @@ class Patient():
     @age.setter
     def age(self, age) -> None:
         if not isinstance(age, int):
-            raise TypeError("Invalid Age!")
-        
-        self._age = age
+            try:
+                int(age)
+            except ValueError:
+                raise TypeError("Invalid age!")
+
+        self._age = int(age)
     
     @property
     def weight(self) -> int:
@@ -57,9 +63,12 @@ class Patient():
     @weight.setter
     def weight(self, weight) -> None:
         if not isinstance(weight, int):
-            raise TypeError("Invalid Weight!")
-        
-        self._weight = weight
+            try:
+                int(weight)
+            except ValueError:
+                raise TypeError("Invalid weight!")
+
+        self._weight = int(weight)
 
     @property
     def height(self) -> int:
@@ -68,10 +77,13 @@ class Patient():
     @height.setter
     def height(self, height) -> None:
         if not isinstance(height, int):
-            raise TypeError("Invalid Height!")
-        
-        self._height = height
+            try:
+                int(height)
+            except ValueError:
+                raise TypeError("Invalid height!")
 
+        self._height = int(height)
+        
     @property
     def sex(self) -> str:
         return self._sex
@@ -96,9 +108,12 @@ class Patient():
     @floor.setter
     def floor(self, floor) -> None:
         if not isinstance(floor, int):
-            raise TypeError("Invalid floor!")
-        
-        self._floor = floor
+            try:
+                int(floor)
+            except ValueError:
+                raise TypeError("Invalid floor!")
+
+        self._floor = int(floor)
 
     @property
     def room(self) -> int:
@@ -107,9 +122,12 @@ class Patient():
     @room.setter
     def room(self, room) -> None:
         if not isinstance(room, int):
-            raise TypeError("Invalid room!")
-        
-        self._room = room
+            try:
+                int(room)
+            except ValueError:
+                raise TypeError("Invalid room!")
+
+        self._room = int(room)
 
     @property
     def bed(self) -> int:
@@ -118,9 +136,12 @@ class Patient():
     @bed.setter
     def bed(self, bed) -> None:
         if not isinstance(bed, int):
-            raise TypeError("Invalid bed!")
-        
-        self._bed = bed
+            try:
+                int(bed)
+            except ValueError:
+                raise TypeError("Invalid bed!")
+
+        self._bed = int(bed)
 
     @property
     def doctor(self) -> str:
@@ -166,8 +187,9 @@ class Patient():
         with open(json_path) as f:
             return [Patient.readPatient(patient) for patient in json.load(f).values()]
 
-    def update(self, patient_dict: dict):
-        self.name = patient_dict["name"]
+    def update(self, patient_form_dict: dict):
+        new_patient = Patient.readPatient(patient_form_dict)
+        self.__dict__.update(new_patient.__dict__)
 
 if __name__ == '__main__':
     print("Fall Prevention Patient")

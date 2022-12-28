@@ -5,6 +5,7 @@ from flask import Flask, render_template, request
 from turbo_flask import Turbo
 from enum import Enum, auto
 import threading
+import json
 import time
 
 app = Flask(__name__, template_folder='fall_prevention_web/html', static_folder='fall_prevention_web')
@@ -18,6 +19,18 @@ ADDR = (IP, PORT)
 pred = PredMode()
 server = Server(addr=ADDR, num_clients=NUM_CLIENTS, operator=pred)
 patient1 = Patient.readPatientsJson("fall_prevention_web/assets/json/patient.json")[0]
+
+sex_dict = {}
+with open("fall_prevention_web/assets/json/sex.json") as f:
+    sex_dict = json.load(f)
+
+doctor_dict = {}
+with open("fall_prevention_web/assets/json/doctor.json") as f:
+    doctor_dict = json.load(f)
+
+nurse_dict = {}
+with open("fall_prevention_web/assets/json/nurse.json") as f:
+    nurse_dict = json.load(f)
 
 class Position(Enum):
     BACK_LAYING = 0
@@ -94,7 +107,8 @@ def edit_patient():
     except Exception as e:
         print(e)
 
-    return render_template('edit_patient.html', patient=patient1)
+    return render_template('edit_patient.html', patient=patient1,
+        sex_dict=sex_dict, doctor_dict=doctor_dict, nurse_dict=nurse_dict)
 
 @app.route('/patient')
 def patient():
