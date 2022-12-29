@@ -18,17 +18,17 @@
                     <a href="javascript:void(0)" class="simple-text logo-normal"> Dashboards </a>
                 </div>
                 <ul class="nav">
-                    <li class=" active  ">
+                    <li class="">
                         <a href="{{ url_for('home') }}">
                             <p>All Patients</p>
                         </a>
                     </li>
-                    <li class=" active  ">
+                    <li class="">
                         <a href="{{ url_for('patient') }}">
                             <p>Patient #1</p>
                         </a>
                     </li>
-                    <li class=" active  ">
+                    <li class="">
                         <a href="/">
                             <p>Add Patient</p>
                         </a>
@@ -84,7 +84,10 @@
                 </div>
             </div>
             <div class="content">
-                <form action="" method="get">
+                {% for mesg in get_flashed_messages() %}
+                <h2 style="color:red;" align="center" > {{ mesg }} </h2>
+                {% endfor %}            
+                <form method="GET" action="">
                     <div class="row">
                         <div class="col-lg-4">
                             <div class="card card-chart">
@@ -173,8 +176,8 @@
                             </div>
                         </div>
                     </div>
-                    <input type="submit" value="Save">
-                    </form>
+                    <input type="submit" value="Save" />
+                </form>
             </div>
         </div>
     </div>
@@ -187,5 +190,4 @@
     <script type=text/javascript src="fall_prevention_web/assets/js/black-dashboard.min.js"></script>
     <script type=text/javascript src="fall_prevention_web/assets/js/themeSettings.js"></script>
 </body>
-
 </html>

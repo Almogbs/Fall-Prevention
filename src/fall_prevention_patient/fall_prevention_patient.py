@@ -1,5 +1,19 @@
 import json
 
+ID_LEN = 9
+MIN_AGE = 0
+MAX_AGE = 128
+MIN_WEIGHT = 0
+MAX_WEIGHT = 256
+MIN_HEIGHT = 0
+MAX_HEIGHT = 256
+MIN_FLOOR = -16
+MAX_FLOOR = 32
+MIN_ROOM = 0
+MAX_ROOM = 64
+MIN_BED = 0
+MAX_BED = 8
+
 class Patient():
     def __init__(self, name, id, age, weight, height, sex, floor, room, bed, doctor, nurse):
         self.sex_dict = None
@@ -34,13 +48,15 @@ class Patient():
     
     @id.setter
     def id(self, id) -> None:
-        if not isinstance(id, int):
-            try:
-                int(id)
-            except ValueError:
-                raise TypeError("Invalid ID!")
+        try:
+            int_id = int(id)
+        except ValueError:
+            raise TypeError("Invalid ID! (must be number)")
 
-        self._id = int(id)
+        if len(str(id).strip()) != ID_LEN:
+            raise ValueError(f"Invalid ID! (ID contain exactly 9 digits)")
+
+        self._id = int_id
 
     @property
     def age(self) -> int:
@@ -48,13 +64,15 @@ class Patient():
     
     @age.setter
     def age(self, age) -> None:
-        if not isinstance(age, int):
-            try:
-                int(age)
-            except ValueError:
-                raise TypeError("Invalid age!")
+        try:
+            int_age = int(age)
+        except ValueError:
+            raise TypeError("Invalid Age! (must be number)")
 
-        self._age = int(age)
+        if int_age < MIN_AGE or int_age > MAX_AGE:
+            raise ValueError(f"Invalid Age! (age should be in {MIN_AGE}-{MAX_AGE} range)")
+
+        self._age = int_age
     
     @property
     def weight(self) -> int:
@@ -62,13 +80,15 @@ class Patient():
     
     @weight.setter
     def weight(self, weight) -> None:
-        if not isinstance(weight, int):
-            try:
-                int(weight)
-            except ValueError:
-                raise TypeError("Invalid weight!")
+        try:
+            int_weight = int(weight)
+        except ValueError:
+            raise TypeError("Invalid Weight! (must be number)")
 
-        self._weight = int(weight)
+        if int_weight < MIN_WEIGHT or int_weight > MAX_WEIGHT:
+            raise ValueError(f"Invalid Weight! (weight should be in {MIN_WEIGHT}-{MAX_WEIGHT} range)")
+
+        self._weight = int_weight
 
     @property
     def height(self) -> int:
@@ -76,13 +96,15 @@ class Patient():
     
     @height.setter
     def height(self, height) -> None:
-        if not isinstance(height, int):
-            try:
-                int(height)
-            except ValueError:
-                raise TypeError("Invalid height!")
+        try:
+            int_height = int(height)
+        except ValueError:
+            raise TypeError("Invalid Height! (must be number)")
 
-        self._height = int(height)
+        if int_height < MIN_HEIGHT or int_height > MAX_HEIGHT:
+            raise ValueError(f"Invalid Height! (height should be in {MIN_HEIGHT}-{MAX_HEIGHT} range)")
+
+        self._height = int_height
         
     @property
     def sex(self) -> str:
@@ -107,13 +129,15 @@ class Patient():
     
     @floor.setter
     def floor(self, floor) -> None:
-        if not isinstance(floor, int):
-            try:
-                int(floor)
-            except ValueError:
-                raise TypeError("Invalid floor!")
+        try:
+            int_floor = int(floor)
+        except ValueError:
+            raise TypeError("Invalid Floor! (must be number)")
 
-        self._floor = int(floor)
+        if int_floor < MIN_FLOOR or int_floor > MAX_FLOOR:
+            raise ValueError(f"Invalid Floor! (floor should be in {MIN_FLOOR}-{MAX_FLOOR} range)")
+
+        self._floor = int_floor
 
     @property
     def room(self) -> int:
@@ -121,13 +145,15 @@ class Patient():
     
     @room.setter
     def room(self, room) -> None:
-        if not isinstance(room, int):
-            try:
-                int(room)
-            except ValueError:
-                raise TypeError("Invalid room!")
+        try:
+            int_room= int(room)
+        except ValueError:
+            raise TypeError("Invalid Room! (must be number)")
 
-        self._room = int(room)
+        if int_room < MIN_ROOM or int_room > MAX_ROOM:
+            raise ValueError(f"Invalid Room! (room should be in {MIN_ROOM}-{MAX_ROOM} range)")
+
+        self._room = int_room
 
     @property
     def bed(self) -> int:
@@ -135,13 +161,15 @@ class Patient():
     
     @bed.setter
     def bed(self, bed) -> None:
-        if not isinstance(bed, int):
-            try:
-                int(bed)
-            except ValueError:
-                raise TypeError("Invalid bed!")
+        try:
+            int_bed = int(bed)
+        except ValueError:
+            raise TypeError("Invalid Bed! (must be number)")
 
-        self._bed = int(bed)
+        if int_bed < MIN_BED or int_bed > MAX_BED:
+            raise ValueError(f"Invalid Bed! (bed should be in {MIN_BED}-{MAX_BED} range)")
+
+        self._bed = int_bed
 
     @property
     def doctor(self) -> str:
@@ -150,12 +178,12 @@ class Patient():
     @doctor.setter
     def doctor(self, doctor) -> None:
         if not isinstance(doctor, str):
-            raise TypeError("Invalid doctor!")
+            raise TypeError("Invalid Doctor!")
 
         with open("fall_prevention_web/assets/json/doctor.json") as f:
             json_dict = json.load(f)
             if doctor not in json_dict:
-                raise TypeError("Invalid doctor!")
+                raise TypeError("Invalid Doctor!")
             self.doctor_dict = json_dict[doctor]
 
         self._doctor = doctor
@@ -167,12 +195,12 @@ class Patient():
     @nurse.setter
     def nurse(self, nurse) -> None:
         if not isinstance(nurse, str):
-            raise TypeError("Invalid nurse!")
+            raise TypeError("Invalid Nurse!")
 
         with open("fall_prevention_web/assets/json/nurse.json") as f:
             json_dict = json.load(f)
             if nurse not in json_dict:
-                raise TypeError("Invalid nurse!")
+                raise TypeError("Invalid Nurse!")
             self.nurse_dict = json_dict[nurse]
 
         self._nurse = nurse
