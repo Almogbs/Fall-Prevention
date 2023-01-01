@@ -218,6 +218,10 @@ class Patient():
     def update(self, patient_form_dict: dict):
         new_patient = Patient.readPatient(patient_form_dict)
         self.__dict__.update(new_patient.__dict__)
+        dic = {"1": patient_form_dict}
+        with open("fall_prevention_web/assets/json/patient.json", 'w') as outfile:
+            json.dump(dic, outfile)
+
 
 if __name__ == '__main__':
     print("Fall Prevention Patient")
