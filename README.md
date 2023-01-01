@@ -9,10 +9,13 @@ We use weight and pressure sensors to build our dataset and to collect data in r
 
 
 ### Hardware Design:
-![alt text](https://github.com/Almogbs/Fall-Prevention/blob/main/other/HW_design.png)
+![alt text](others/Arch/SensorsDiagram.jpeg)
+
+### Sensors Layout:
+![alt text](others/Arch/sensors_layout.jpeg)
 
 ### High Level Software Architecture:
-![alt text](https://github.com/Almogbs/Fall-Prevention/blob/main/other/sw_arch.drawio.png)
+![alt text](others/Arch/SoftwareDiagram.png)
 
 ### System Design
-![alt text](https://github.com/Almogbs/Fall-Prevention/blob/main/other/System_Diagram.drawio.png)
+![alt text](others/Arch/System_Diagram.drawio.png)
