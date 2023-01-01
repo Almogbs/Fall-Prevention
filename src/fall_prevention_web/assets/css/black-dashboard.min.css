@@ -12675,7 +12675,10 @@ a.text-darker:focus, a.text-darker:hover {
 }
 
 .footer {
-    padding: 24px 0 24px 250px
+    padding: 24px 0 24px 250px;
+    position: fixed;
+    Width: 100%;
+    bottom: 0;
 }
 
 .footer [class*=container-] {
@@ -12684,14 +12687,13 @@ a.text-darker:focus, a.text-darker:hover {
 
 .footer .nav {
     display: inline-block;
-    float: left;
     margin-bottom: 0;
     padding-left: 30px;
-    list-style: none
+    list-style: none;
 }
 
 .footer .nav-item {
-    display: inline-block
+    display: inline-block;
 }
 
 .footer .nav-item:first-child a {
@@ -17330,3 +17332,28 @@ Copyright (c) 2015 Daniel Eden
   /* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
   .show {display:block;}
   
+  .sticky-slider {
+    position: fixed;
+    bottom: 1rem;
+    border: none;
+    border-radius: 30px;
+    background-color: #14acf8;
+    color: #fff;
+    z-index: 10000;
+    box-shadow: 0 0 50px 0 rgba(0,0,0,.4);
+    padding: 1rem 2rem;
+    margin: 1rem 0;
+    right: 1rem;
+    font-size: 1rem;
+  }
+
+a {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+a:hover {
+    color:#ffffff; 
+    text-decoration:none; 
+    cursor:pointer;  
+}
