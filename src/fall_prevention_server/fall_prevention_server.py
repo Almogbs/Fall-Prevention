@@ -3,7 +3,7 @@ import time
 
 DF_UPDATE_RATE = 25
 MSG_LEN_MIN = 9
-CHUNK = 4096
+CHUNK_SIZE = 4096
 
 
 class Server():
@@ -12,11 +12,11 @@ class Server():
         self.operator = operator
         self.socket = None
         self.addr = addr
+        self.client = None
     
-    def start(self):
+    def init(self):
         print("Starting...")
 
-        """
         self.socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.socket.bind(self.addr)
         self.socket.listen(self.num_clients)
@@ -24,17 +24,19 @@ class Server():
         print("Waiting for client...")
         client, addr = self.socket.accept()
         print("Got connection: " + str(addr))
-        """
+        self.client = client
+
+    def start(self):
         while True:
-            #data = client.recv(CHUNK)
-            #data = data.decode('utf-8')
-            #if len(data) <= MSG_LEN_MIN:
-            #   continue
+            data = self.client.recv(CHUNK_SIZE)
+            data = data.decode('utf-8')
+            if len(data) <= MSG_LEN_MIN:
+               continue
 
-            #self.operator.collect(data)
-            self.operator.collect("bla")
+            if self.operator.collect(data):
+                return
+
             time.sleep(5)
-
 
 if __name__ == '__main__':
     print("Fall Prevention Server Library")

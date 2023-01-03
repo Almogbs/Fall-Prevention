@@ -23,24 +23,11 @@ def getLabel():
 
 
 def getMode():
-    print("Choose Mode (by the index):\n")
-    print("1. Collect Mode")
-    print("2. Predict Mode")
-    ans = input("-> ")
-    
-    if ans == '1':
-        label = getLabel()
-        if label is None:
-            return None
-
-        return CollectMode(verbose=True, label=label)
-
-    elif ans == '2':
-        return PredMode(verbose=True)
-    
-    else:
+    label = getLabel()
+    if label is None:
         return None
 
+    return CollectMode(verbose=True, label=label)
 
 def main():
     mode = getMode()
@@ -49,8 +36,10 @@ def main():
         return
 
     server = Server(addr=ADDR, num_clients=NUM_CLIENTS, operator=mode)
-    
-    server.start()
+    server.init()
+    while True:
+        server.start()
+        server.operator = getMode()
 
 if __name__ == '__main__':
     main()

@@ -16,22 +16,25 @@ class CollectMode(Mode):
 
         data = data.split(" ")[2: -1]
         data.append(self.label)
-        if(len(data) != len(COLS)):
-            return
+
+        if len(data) != len(COLS):
+            return False
 
         try:
             self.df = self.df.append(pd.Series(data, index=COLS), ignore_index=True)
 
             if self.count % DF_UPDATE_RATE == 0:
-                self.df.to_csv(self.data_file)
                 self.stored += 1
 
         except ValueError:
-            return
+            return False
 
         if self.stored == DF_TOTAL_SAMPLES:
+            self.df.to_csv(self.data_file)
             print(f"{DF_TOTAL_SAMPLES} samples written to {self.data_file}, quitting...")
-            os._exit(0)
+            return True
+
+        return False
 
 
 if __name__ == '__main__':
