@@ -4,7 +4,7 @@ from fall_prevention_modes import CollectMode, PredMode
 
 NUM_CLIENTS = 1
 PORT = 13380
-IP = "192.168.0.100"
+IP = "192.168.6.232"
 ADDR = (IP, PORT)
 
 def getLabel():
@@ -20,7 +20,6 @@ def getLabel():
         return None
     
     return int(label)
-
 
 def getMode():
     label = getLabel()

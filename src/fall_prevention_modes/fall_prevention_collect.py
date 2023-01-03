@@ -3,7 +3,7 @@ from .fall_prevention_mode import *
 class CollectMode(Mode):
     def __init__(self, verbose: bool = True, label: int = 0):
         super().__init__(verbose)
-        self.data_file = f"data_{time.strftime(f'%H-%M-%S_%d-%m-%Y', time.gmtime())}_{label}.csv"
+        self.data_file = f"datasets/data_{time.strftime(f'%H-%M-%S_%d-%m-%Y', time.gmtime())}_{label}.csv"
         self.df = pd.DataFrame(columns=COLS)
         self.stored = 0
         self.label = label

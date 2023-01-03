@@ -3,7 +3,7 @@ import time
 
 DF_UPDATE_RATE = 25
 MSG_LEN_MIN = 9
-CHUNK_SIZE = 4096
+CHUNK_SIZE = 64
 
 
 class Server():
@@ -36,7 +36,7 @@ class Server():
             if self.operator.collect(data):
                 return
 
-            time.sleep(5)
+            #time.sleep(5)
 
 if __name__ == '__main__':
     print("Fall Prevention Server Library")
