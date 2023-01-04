@@ -5,12 +5,9 @@ class CollectMode(Mode):
         super().__init__(verbose)
         self.data_file = f"datasets/data_{time.strftime(f'%H-%M-%S_%d-%m-%Y', time.gmtime())}_{label}.csv"
         self.df = pd.DataFrame(columns=COLS)
-        self.stored = 0
         self.label = label
 
     def collect(self, data: str):
-        self.count += 1
-
         if self.verbose:
             print(data + f" {self.label}")
 
@@ -22,14 +19,12 @@ class CollectMode(Mode):
 
         try:
             self.df = self.df.append(pd.Series(data, index=COLS), ignore_index=True)
-
-            if self.count % DF_UPDATE_RATE == 0:
-                self.stored += 1
+            self.count += 1
 
         except ValueError:
             return False
 
-        if self.stored == DF_TOTAL_SAMPLES:
+        if self.count == DF_TOTAL_SAMPLES:
             self.df.to_csv(self.data_file)
             print(f"{DF_TOTAL_SAMPLES} samples written to {self.data_file}, quitting...")
             return True
