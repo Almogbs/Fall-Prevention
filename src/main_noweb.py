@@ -23,10 +23,12 @@ def getLabel():
 
 def getMode():
     label = getLabel()
+    height = input("height -> ")
+    weight = input("weight -> ")
     if label is None:
         return None
 
-    return CollectMode(verbose=True, label=label)
+    return CollectMode(verbose=True, label=label, height=height, weight=weight)
 
 def main():
     mode = getMode()

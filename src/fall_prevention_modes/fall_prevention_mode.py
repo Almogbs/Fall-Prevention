@@ -3,7 +3,7 @@ import pandas as pd
 import time
 import os
 
-COLS = ["FFSR1", "FFSR2", "FFSR3", "FFSR4", "RFSR1", "RFSR2", "RFSR3", "RFSR4", "WS", "Label"]
+COLS = ["FFSR1", "FFSR2", "FFSR3", "FFSR4", "RFSR1", "RFSR2", "RFSR3", "RFSR4", "Weight", "Height", "Label"]
 
 # The ESP32 sends data vector each 200ms
 # So the collection lengh will be:

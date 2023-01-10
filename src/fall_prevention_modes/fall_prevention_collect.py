@@ -1,18 +1,22 @@
 from .fall_prevention_mode import *
 
 class CollectMode(Mode):
-    def __init__(self, verbose: bool = True, label: int = 0):
+    def __init__(self, verbose: bool = True, label: int = 0, weight = 0, height = 0):
         super().__init__(verbose)
         self.data_file = f"datasets/data_{time.strftime(f'%H-%M-%S_%d-%m-%Y', time.gmtime())}_{label}.csv"
         self.df = pd.DataFrame(columns=COLS)
         self.label = label
+        self.weight = weight
+        self.height = height
 
     def collect(self, data: str):
         if self.verbose:
             print(data + f" {self.label}")
 
         data = data.split(" ")[2: -1]
-        data.append(self.label)
+        data.append(int(self.weight))
+        data.append(int(self.height))
+        data.append(int(self.label))
 
         if len(data) != len(COLS):
             return False

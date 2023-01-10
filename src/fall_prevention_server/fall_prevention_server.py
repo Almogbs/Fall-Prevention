@@ -34,7 +34,9 @@ class Server():
                continue
 
             if self.operator.collect(data):
+            #if self.operator.collect("data"):
                 return
+            
 
 if __name__ == '__main__':
     print("Fall Prevention Server Library")

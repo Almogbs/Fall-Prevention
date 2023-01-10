@@ -124,6 +124,7 @@ def home():
     return render_template('home.html')
  
 def startServer():
+    server.init()
     server.start()
 
 if __name__ == '__main__':
