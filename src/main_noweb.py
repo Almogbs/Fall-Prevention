@@ -1,5 +1,4 @@
-from fall_prevention_server import Server
-from fall_prevention_modes import CollectMode, Position
+from fall_prevention_server import CollectServer
 
 
 NUM_CLIENTS = 1
@@ -12,6 +11,9 @@ HEIGHT_MAX = 220
 WEIGHT_MIN = 40
 WEIGHT_MAX = 150
 
+
+# NOTE: if code does'nt work - uncomment all the following:
+"""
 
 def getLabel() -> int:
     while(True):
@@ -61,8 +63,8 @@ def getMode() -> CollectMode:
 
 def updateMode(server: Server) -> None:
     print("Done session for that label.")
-    print("Kepp smapling with the same patient?\t Y/n")
     while(1):
+        print("Keep smaple with the same patient?\t Y/n")
         try:
             decision = input("-> ").lower()
             if decision in ['y', 'n']:
@@ -70,7 +72,6 @@ def updateMode(server: Server) -> None:
         except:
             pass
         print("ERROR: Invalid Input. Please insert 'Y' or 'n'.")
-        print("Kepp smapling with the same patient?\t Y/n")
 
     if decision == 'n':
         print("New patient...")
@@ -79,13 +80,15 @@ def updateMode(server: Server) -> None:
         print("Same patient...")
         server.operator.label = getLabel()
 
+"""
 
 def main():
-    server = Server(addr=ADDR, num_clients=NUM_CLIENTS, operator=getMode())
+
+    server = CollectServer(addr=ADDR, num_clients=NUM_CLIENTS) # NOTE: if code does'nt work - switch back to `Server`
     server.init()
     while True:
         server.start()
-        updateMode(server)
+        server.updateMode() # NOTE: if code does'nt work - switch back to `updateMode(server)`
 
 
 if __name__ == '__main__':

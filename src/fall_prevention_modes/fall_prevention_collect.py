@@ -1,5 +1,10 @@
 from .fall_prevention_mode import *
 
+HEIGHT_MIN = 120
+HEIGHT_MAX = 220
+WEIGHT_MIN = 40
+WEIGHT_MAX = 150
+
 class CollectMode(Mode):
     def __init__(self, verbose: bool = True, label: int = 0, weight = 0, height = 0):
         super().__init__(verbose)
