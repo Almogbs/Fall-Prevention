@@ -24,4 +24,4 @@ We use weight and pressure sensors to build our dataset and to collect data in r
 ![alt text](others/Arch/System_Diagram.drawio.png)
 
 ### Nurses Station Website:
-![alt text](others/web/web.jpg)
+![alt text](others/web/web.png)
