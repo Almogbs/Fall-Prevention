@@ -27,7 +27,8 @@ def getLabel() -> int:
             if label in [p.value for p in Position]:
                 return label
         except (TypeError, ValueError):
-            print("ERROR: Invalid Lable. Please try again.")
+            pass
+        print("ERROR: Invalid Lable. Please try again.")
 
 
 def getHeight() -> int:
@@ -67,8 +68,9 @@ def updateMode(server: Server) -> None:
             if decision in ['y', 'n']:
                 break
         except:
-            print("ERROR: Invalid Input. Please insert 'Y' or 'n'.")
-            print("Kepp smapling with the same patient?\t Y/n")
+            pass
+        print("ERROR: Invalid Input. Please insert 'Y' or 'n'.")
+        print("Kepp smapling with the same patient?\t Y/n")
 
     if decision == 'n':
         print("New patient...")
@@ -79,12 +81,11 @@ def updateMode(server: Server) -> None:
 
 
 def main():
-    mode = getMode()
-    server = Server(addr=ADDR, num_clients=NUM_CLIENTS, operator=mode)
+    server = Server(addr=ADDR, num_clients=NUM_CLIENTS, operator=getMode())
     server.init()
     while True:
         server.start()
-        server.operator = updateMode(server)
+        updateMode(server)
 
 
 if __name__ == '__main__':
