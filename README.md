@@ -18,3 +18,7 @@ Sensors Layout          |  Collecting the Data
 Software Design      |  Nurses Station Website
 :-------------------------:|:-------------------------:
 ![alt text](others/Arch/SoftwareDiagram.png) |  ![alt text](others/web/web.png)
+
+Convolutional Neural Network    | Recurrent Neural Network
+:-------------------------:|:-------------------------:
+![alt text](others/ML/cnn.png) |  ![alt text](others/ML/rnn.png)
