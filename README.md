@@ -7,21 +7,14 @@ Using Machine Learning, we aim to predict whenever a patient is about to fall fr
 A simple and smart UI will also be added to the system.
 We use weight and pressure sensors to build our dataset and to collect data in real time.
 
+Hardware Design           |  System Design 
+:-------------------------:|:-------------------------:
+![alt text](others/Arch/SensorsDiagram.jpeg)  |  ![alt text](others/Arch/System_Diagram.drawio.png)
 
-### Hardware Design:
-![alt text](others/Arch/SensorsDiagram.jpeg)
+Sensors Layout          |  Collecting the Data
+:-------------------------:|:-------------------------:
+![alt text](others/HW/pic2.jpg)  |  ![alt text](others/HW/pic1.jpg)
 
-### Sensors Layout:
-![alt text](others/HW/pic2.jpg)
-
-### Collecting the Data:
-![alt text](others/HW/pic1.jpg)
-
-### High Level Software Architecture:
-![alt text](others/Arch/SoftwareDiagram.png)
-
-### System Design
-![alt text](others/Arch/System_Diagram.drawio.png)
-
-### Nurses Station Website:
-![alt text](others/web/web.png)
+Software Design      |  Nurses Station Website
+:-------------------------:|:-------------------------:
+![alt text](others/Arch/SoftwareDiagram.png) |  ![alt text](others/web/web.png)
