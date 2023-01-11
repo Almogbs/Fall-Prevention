@@ -12,10 +12,16 @@ We use weight and pressure sensors to build our dataset and to collect data in r
 ![alt text](others/Arch/SensorsDiagram.jpeg)
 
 ### Sensors Layout:
-![alt text](others/Arch/sensors_layout.jpeg)
+![alt text](others/HW/pic2.jpg)
+
+### Collecting the Data:
+![alt text](others/HW/pic1.jpg)
 
 ### High Level Software Architecture:
 ![alt text](others/Arch/SoftwareDiagram.png)
 
 ### System Design
 ![alt text](others/Arch/System_Diagram.drawio.png)
+
+### Nurses Station Website:
+![alt text](others/web/web.jpg)
