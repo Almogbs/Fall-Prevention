@@ -1,5 +1,6 @@
 import socket
 import time
+from fall_prevention_modes import Mode
 
 DF_UPDATE_RATE = 25
 MSG_LEN_MIN = 9
@@ -7,7 +8,7 @@ CHUNK_SIZE = 64
 
 
 class Server():
-    def __init__(self, addr: tuple, num_clients: int, operator):
+    def __init__(self, addr: tuple, num_clients: int, operator: Mode):
         self.num_clients = num_clients
         self.operator = operator
         self.socket = None

@@ -1,4 +1,4 @@
-from fall_prevention_modes import CollectMode, PredMode
+from fall_prevention_modes import CollectMode, PredMode, Position
 from fall_prevention_patient import Patient
 from fall_prevention_server import Server
 from flask import Flask, render_template, request, flash, redirect, url_for
@@ -31,13 +31,6 @@ with open("fall_prevention_web/assets/json/doctor.json") as f:
 nurse_dict = {}
 with open("fall_prevention_web/assets/json/nurse.json") as f:
     nurse_dict = json.load(f)
-
-class Position(Enum):
-    BACK_LAYING = 0
-    LEFT_LAYING = auto()
-    RIGHT_LAYING = auto()
-    LEFT_ALARM = auto()
-    RIGHT_ALARM = auto()
     
 Positions = ["Back Laying", "Left Side Laying", "Right Side Laying",
              "Left Side Alarm!", "Right Side Alarm!"]

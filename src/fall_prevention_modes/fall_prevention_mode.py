@@ -2,6 +2,7 @@ from abc import ABC, abstractmethod
 import pandas as pd
 import time
 import os
+from enum import Enum, auto
 
 COLS = ["FFSR1", "FFSR2", "FFSR3", "FFSR4", "RFSR1", "RFSR2", "RFSR3", "RFSR4", "Weight", "Height", "Label"]
 
@@ -11,13 +12,13 @@ COLS = ["FFSR1", "FFSR2", "FFSR3", "FFSR4", "RFSR1", "RFSR2", "RFSR3", "RFSR4", 
 # e.g. DF_TOTAL_SAMPLES = 64, t_time = 64 * 200ms = 12.8 secs
 DF_TOTAL_SAMPLES = 64
 
-Labels = {
-    "LC": 0,  # Laying Center
-    "LL": 1,  # Laying Left
-    "LR": 2,  # Laying Right
-    "AL": 3,  # Alarm Left
-    "AR": 4,  # Alarm Right
-}
+class Position(Enum):
+    BACK_LAYING = 0
+    LEFT_LAYING = auto()
+    RIGHT_LAYING = auto()
+    LEFT_ALARM = auto()
+    RIGHT_ALARM = auto()
+
 
 class Mode(ABC):
     @abstractmethod
