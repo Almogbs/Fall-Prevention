@@ -1,5 +1,4 @@
 <h1 align="center">Fall Prevention</h1>
-<h3 align="center">IoT Course</h3>
 
 ## Description
 - A Project with Rambam Health Care Campus, that aim to prevent patients (with temporary neurological disability) from falling out of bed in hospitals.
