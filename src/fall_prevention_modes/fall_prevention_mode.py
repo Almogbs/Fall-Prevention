@@ -13,9 +13,7 @@ COLS = ["FFSR1", "FFSR2", "FFSR3", "FFSR4", "RFSR1", "RFSR2", "RFSR3", "RFSR4", 
 DF_TOTAL_SAMPLES = 64
 
 class Position(Enum):
-    BACK_LAYING = 0
-    LEFT_LAYING = auto()
-    RIGHT_LAYING = auto()
+    LAYING = 0
     LEFT_ALARM = auto()
     RIGHT_ALARM = auto()
 

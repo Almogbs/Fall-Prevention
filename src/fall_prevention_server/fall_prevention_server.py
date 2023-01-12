@@ -17,6 +17,7 @@ class Server():
 
     def init(self):
         print("Starting...")
+        """
         self.socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.socket.bind(self.addr)
         self.socket.listen(self.num_clients)
@@ -24,14 +25,19 @@ class Server():
         client, addr = self.socket.accept()
         print("Got connection: " + str(addr))
         self.client = client
+        """
 
     def start(self):
         while True:
+            """
             data = self.client.recv(CHUNK_SIZE)
             data = data.decode('utf-8')
             if len(data) <= MSG_LEN_MIN:
                 continue
             if self.operator.collect(data):
+                return
+            """
+            if self.operator.collect("data"):
                 return
 
 

@@ -32,12 +32,11 @@ nurse_dict = {}
 with open("fall_prevention_web/assets/json/nurse.json") as f:
     nurse_dict = json.load(f)
     
-Positions = ["Back Laying", "Left Side Laying", "Right Side Laying",
-             "Left Side Alarm!", "Right Side Alarm!"]
+Positions = ["Laying", "Left Side Alarm!", "Right Side Alarm!"]
 
 AlarmPositions = [Position.LEFT_ALARM.value, Position.RIGHT_ALARM.value]
 
-PositionsFiles = ["back", "left", "right", "left_alarm", "right_alarm"]
+PositionsFiles = ["back", "left_alarm", "right_alarm"]
 
 
 def update_datetime():
@@ -68,7 +67,7 @@ def isPosAlarm(pos):
     return pos in AlarmPositions
 
 def isPosValid(pos):
-    return pos <= Position.RIGHT_ALARM.value and pos >= Position.BACK_LAYING.value
+    return pos <= Position.RIGHT_ALARM.value and pos >= Position.LAYING.value
 
 def update_position():
     with app.app_context():
