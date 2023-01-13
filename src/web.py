@@ -20,6 +20,9 @@ pred = PredMode()
 server = Server(addr=ADDR, num_clients=NUM_CLIENTS, operator=pred)
 patient1 = Patient.readPatientsJson("fall_prevention_web/assets/json/patient.json")[0]
 
+last = 0
+curr = 0
+
 sex_dict = {}
 with open("fall_prevention_web/assets/json/sex.json") as f:
     sex_dict = json.load(f)
@@ -70,14 +73,19 @@ def isPosValid(pos):
     return pos <= Position.RIGHT_ALARM.value and pos >= Position.LAYING.value
 
 def update_position():
+    global last, curr
     with app.app_context():
         while True:
-            time.sleep(5)
-            turbo.push(turbo.replace(render_template('position.html'), 'load_position'))
+            time.sleep(0.3)
+            if last != curr:
+                turbo.push(turbo.replace(render_template('position.html'), 'load_position'))
+            last = curr
 
 @app.context_processor
 def get_position():
+    global last, curr
     pos = pred.last_pred
+    curr = pos
     position = posToStr(pos)
     position_image = posToFile(pos)
     position_alarm = ""

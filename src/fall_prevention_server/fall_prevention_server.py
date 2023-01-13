@@ -1,4 +1,5 @@
 import socket
+import time
 from fall_prevention_modes import Mode, PredMode, CollectMode, Position,\
     WEIGHT_MIN, WEIGHT_MAX, HEIGHT_MIN, HEIGHT_MAX
 
@@ -37,7 +38,8 @@ class Server():
             if self.operator.collect(data):
                 return
             """
-            if self.operator.collect("data"):
+            time.sleep(0.2)
+            if self.operator.collect("Sensors reads: 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 66"):
                 return
 
 

@@ -1,17 +1,50 @@
 from .fall_prevention_mode import *
-import random
+from fall_prevention_ml import *
+
+import pandas as pd
+import numpy as np
+import tensorflow as tf
+
+SEQ_LEN = 4
+DATA_LEN = 8
+STOCK_SAMPLE = [0.0] * DATA_LEN
+PRED_COLS = ["FFSR1", "FFSR2", "FFSR3", "FFSR4", "RFSR1", "RFSR2", "RFSR3", "RFSR4"]
+
+def preprare_data(training_data, new_data):
+    data_prep = data_preparation(training_data, new_data)
+    return data_prep.prepare()
 
 class PredMode(Mode):
     def __init__(self, verbose: bool = True):
         super().__init__(verbose)
-        self.last_pred = random.randint(0,2)
+        self.train = pd.read_csv("fall_prevention_ml/train.csv")
+        self.train.drop(columns=self.train.columns[0], axis=1,  inplace=True)
+
+        self.last_pred = 0
+        self.window = [STOCK_SAMPLE for i in range(SEQ_LEN)]
+        
+        self.model = tf.keras.Sequential([tf.keras.models.load_model("fall_prevention_ml/fp_model.h5"), tf.keras.layers.Softmax()])
+        self.counter = 0
 
     def collect(self, data: str):
-        # parse vector from string
-        # call prepare([vector]) (one item list)
-        # call model
-        # update last_pred
-        self.last_pred = random.randint(0,2)
+        # Prepare current sample
+        # data = data.split(" ")[2: -1]
+        data = self.train.loc[self.counter % self.train.shape[0], :].values.flatten().tolist()
+
+        self.counter += 1
+        sample = preprare_data(self.train, data)
+
+        # Update sliding window
+        self.window.append(sample.values.flatten().tolist())
+        self.window.pop(0)
+
+        # Get prediction
+        curr = self.model.predict(np.array([pd.DataFrame(self.window, columns=PRED_COLS)]))
+        self.last_pred =  [np.argmax(i) for i in curr][0]
+
+        if self.verbose:
+            print(self.last_pred)
+
         return False
 
 if __name__ == '__main__':
