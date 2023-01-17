@@ -1,6 +1,5 @@
 from fall_prevention_server import CollectServer
 
-
 NUM_CLIENTS = 1
 PORT = 13380
 IP = "192.168.6.232"
@@ -10,7 +9,6 @@ HEIGHT_MIN = 120
 HEIGHT_MAX = 220
 WEIGHT_MIN = 40
 WEIGHT_MAX = 150
-
 
 # NOTE: if code does'nt work - uncomment all the following:
 """

@@ -22,16 +22,21 @@ class PredMode(Mode):
 
         self.last_pred = 0
         self.window = [STOCK_SAMPLE for i in range(SEQ_LEN)]
-        
+
         self.model = tf.keras.Sequential([tf.keras.models.load_model("fall_prevention_ml/fp_model.h5"), tf.keras.layers.Softmax()])
         self.counter = 0
 
     def collect(self, data: str):
         # Prepare current sample
-        # data = data.split(" ")[2: -1]
-        data = self.train.loc[self.counter % self.train.shape[0], :].values.flatten().tolist()
+        data = data.split(" ")[2: -1]
+        
+        if len(data) != len(PRED_COLS):
+            return False
 
         self.counter += 1
+        if self.verbose:
+            print(data)
+
         sample = preprare_data(self.train, data)
 
         # Update sliding window

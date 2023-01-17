@@ -18,28 +18,26 @@ class Server():
 
     def init(self):
         print("Starting...")
-        """
+        
         self.socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        # Check this change
+        self.socket.setsockopt(socket.IPPROTO_TCP, socket.TCP_NODELAY, 1)
         self.socket.bind(self.addr)
         self.socket.listen(self.num_clients)
         print("Waiting for client...")
         client, addr = self.socket.accept()
         print("Got connection: " + str(addr))
         self.client = client
-        """
+        
 
     def start(self):
         while True:
-            """
             data = self.client.recv(CHUNK_SIZE)
             data = data.decode('utf-8')
             if len(data) <= MSG_LEN_MIN:
                 continue
+
             if self.operator.collect(data):
-                return
-            """
-            time.sleep(0.2)
-            if self.operator.collect("Sensors reads: 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 66"):
                 return
 
 
@@ -120,7 +118,12 @@ class CollectServer(Server):
         if decision == 'n':
             self.operator = CollectServer.getMode()
         else:
-            self.operator.label = CollectServer.getLabel()
+            new_operator = CollectMode(
+                verbose=True,
+                label=CollectServer.getLabel(),
+                height=self.operator.height,
+                weight=self.operator.weight)
+            self.operator = new_operator
             self.printCurrentPatient()
 
 
