@@ -15,6 +15,7 @@ class Server():
         self.socket = None
         self.addr = addr
         self.client = None
+        self.last_recv = time.time()
 
     def init(self):
         print("Starting...")
@@ -34,6 +35,9 @@ class Server():
         while True:
             data = self.client.recv(CHUNK_SIZE)
             data = data.decode('utf-8')
+
+            self.last_recv = time.time()
+
             if len(data) <= MSG_LEN_MIN:
                 continue
 

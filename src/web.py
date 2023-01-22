@@ -43,6 +43,13 @@ AlarmPositions = [Position.LEFT_ALARM.value, Position.RIGHT_ALARM.value]
 PositionsFiles = ["back", "left_alarm", "right_alarm"]
 
 
+
+def isLive(server):
+    if abs(server.last_recv - time.time()) > 3:
+        return False
+    return True
+
+
 def update_datetime():
     with app.app_context():
         while True:
@@ -53,7 +60,7 @@ def update_datetime():
 def get_datetime():
     curr_date = f"{time.strftime(f'%d/%m/%Y', time.gmtime())}"
     curr_time = f"{time.strftime(f'%H:%M:%S', time.gmtime())}"
-    return {'curr_time': curr_time, 'curr_date': curr_date}
+    return {'curr_time': curr_time, 'curr_date': curr_date, 'live': isLive(server)}
 
 def posToStr(pos):
     if not isPosValid(pos):

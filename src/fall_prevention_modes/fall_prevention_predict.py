@@ -48,7 +48,7 @@ class PredMode(Mode):
         self.last_pred =  [np.argmax(i) for i in curr][0]
 
         if self.verbose:
-            print(self.last_pred)
+            print(self.last_pred, "Accuracy: ", curr[0][self.last_pred])
 
         return False
 
