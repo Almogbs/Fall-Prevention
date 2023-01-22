@@ -137,6 +137,6 @@ def startServer():
 if __name__ == '__main__':
     threading.Thread(target=startServer).start()
 
-    app.secret_key = 'super secret key'
+    app.secret_key = 'very secret key'
     app.config['SESSION_TYPE'] = 'filesystem'
     app.run(host='0.0.0.0', port=56000)
