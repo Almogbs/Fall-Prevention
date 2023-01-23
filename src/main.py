@@ -128,7 +128,7 @@ def patient():
 
 @app.route('/')
 def home():
-    return render_template('home.html')
+    return render_template('home.html', patient=patient1)
  
 def startServer():
     server.init()
