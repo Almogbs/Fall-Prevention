@@ -13,8 +13,8 @@ turbo = Turbo(app)
 
 NUM_CLIENTS = 1
 PORT = 13380
-IP = "192.168.6.232"
-#IP = "192.168.0.101"
+IP = "192.168.196.232"
+#IP = "192.168.0.100"
 ADDR = (IP, PORT)
 
 pred = PredMode()
@@ -85,7 +85,7 @@ def update_position():
     with app.app_context():
         while True:
             if last != curr:
-                turbo.push(turbo.replace(render_template('position.html'), 'load_position'))
+                turbo.push(turbo.replace(render_template('position.html', patient=patient1), 'load_position'))
                 last = curr
 
 @app.context_processor

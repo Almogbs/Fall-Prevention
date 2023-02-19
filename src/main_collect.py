@@ -2,7 +2,7 @@ from fall_prevention_server import CollectServer
 
 NUM_CLIENTS = 1
 PORT = 13380
-IP = "192.168.6.232"
+IP = "192.168.196.232"
 ADDR = (IP, PORT)
 
 HEIGHT_MIN = 120
